@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
-function App() {
-  const [count, setCount] = useState(0)
+import { HomePage } from "./pages/HomePage"
+import { ToyIndex } from "./pages/ToyIndex"
+import { UserMsg } from './cmps/UserMsg'
+import { Provider } from 'react-redux'
+import { ToyEdit } from './pages/ToyEdit'
+import { ToyDetails } from './pages/ToyDetails'
 
+import { store } from './store/store'
+
+export function App() {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Provider store={store}>
+      <Router>
+        <section className="app">
+          {/* <AppHeader /> */}
+          <main className='main-layout'>
+            <Routes>
+              <Route element={<HomePage />} path="/" />
+              <Route element={<ToyIndex />} path="/toy" />
+              <Route element={<ToyEdit />} path="/toy/edit" />
+              <Route element={<ToyEdit />} path="/toy/edit/:toyId" />
+              <Route element={<ToyDetails />} path="/toy/:toyId" />
+            </Routes>
+            <UserMsg />
+          </main>
+          {/* <AppFooter /> */}
+        </section>
+      </Router>
+    </Provider>
   )
 }
-
-export default App
