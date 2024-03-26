@@ -10,19 +10,28 @@ export const toyService = {
     save,
     remove,
     getEmptyToy,
-    getDefaultFilter
+    getDefaultFilter,
+    getDefaultSort
 }
 
-function query(filterBy = {}) {
+function query(filterBy = {}, sortBy = {}) {
     return storageService.query(TOYS_KEY)
         .then(toys => {
-            if (!filterBy.txt) filterBy.txt = ''
-            if (!filterBy.maxPrice) filterBy.maxPrice = Infinity
-            const regExp = new RegExp(filterBy.txt, 'i')
-            return toys.filter(toy =>
-                regExp.test(toy.name) &&
-                toy.price <= filterBy.maxPrice
-            )
+            if (filterBy.txt) {
+                const regex = new RegExp(filterBy.txt, 'i')
+                toys = toys.filter(toy => regex.test(toy.name))
+            }
+            if (filterBy.maxPrice) {
+                toys = toys.filter(toy => toy.price < filterBy.maxPrice)
+            }
+            if (filterBy.inStock !== 'all') {
+                toys = toys.filter(toy => (filterBy.inStock === 'inStock' ? toy.inStock : !toy.inStock))
+            }
+            if (sortBy.type === 'name') toys.sort((toy1, toy2) => (toy1.name.localeCompare(toy2.name)) * sortBy.dir)
+            if (sortBy.type === 'price') toys.sort((toy1, toy2) => (toy1.price - toy2.price) * sortBy.dir)
+            if (sortBy.type === 'created') toys.sort((toy1, toy2) => (toy1.created - toy2.created) * sortBy.dir)
+
+            return toys
         })
 }
 
@@ -53,7 +62,11 @@ function getEmptyToy() {
 }
 
 function getDefaultFilter() {
-    return { txt: '', maxPrice: '' }
+    return { txt: '', maxPrice: '', inStock: 'all' }
+}
+
+function getDefaultSort() {
+    return { type: 'created', dir: 1 }
 }
 
 function _createToys() {
@@ -72,8 +85,8 @@ function _createToy(name = '') {
         name,
         price: utilService.getRandomIntInclusive(50, 250),
         labels: _getRandLabels(),
-        createdAt: Date.now(),
-        inStock: Math.random() > 0.9
+        createdAt: utilService.getRandomTimestamp(),
+        inStock: Math.random() > 0.1
     }
 }
 

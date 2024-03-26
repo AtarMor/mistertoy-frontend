@@ -21,9 +21,9 @@ export function ToyDetails() {
     if (!toy) return <div>Loading...</div>
     return (
         <section className="toy-details">
-            <h1>Toy: {toy.name}</h1>
+            <h1>{toy.name}</h1>
             <h2>Price: ${toy.price}</h2>
-            <h2>Labels: {toy.labels.join(', ')}</h2>
+            {toy.labels.length ? <h2>Labels: {toy.labels.join(', ')}</h2> : ''}
             <Link to={`/toy/edit/${toy._id}`}><button>Edit</button></Link>
             <Link to={`/toy`}><button>Back</button></Link>
         </section>

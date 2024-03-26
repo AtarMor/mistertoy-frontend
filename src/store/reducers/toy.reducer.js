@@ -13,6 +13,7 @@ export const REMOVE_TOY_FROM_CART = 'REMOVE_TOY_FROM_CART'
 export const CLEAR_CART = 'CLEAR_CART'
 
 export const SET_FILTER_BY = 'SET_FILTER_BY'
+export const SET_SORT_BY = 'SET_SORT_BY'
 export const SET_IS_LOADING = 'SET_IS_LOADING'
 
 const initialState = {
@@ -21,6 +22,7 @@ const initialState = {
     shoppingCart: [],
     isLoading: false,
     filterBy: toyService.getDefaultFilter(),
+    sortBy: toyService.getDefaultSort()
 }
 
 export function toyReducer(state = initialState, action = {}) {
@@ -57,6 +59,8 @@ export function toyReducer(state = initialState, action = {}) {
             return { ...state, shoppingCart: [] }
         case SET_FILTER_BY:
             return { ...state, filterBy: { ...state.filterBy, ...action.filterBy } }
+        case SET_SORT_BY:
+            return { ...state, sortBy: { ...action.sortBy } }
         case SET_IS_LOADING:
             return { ...state, isLoading: action.isLoading }
 
