@@ -11,6 +11,7 @@ export function ToyFilter({ onSetFilter, filterBy }) {
     }, [filterByToEdit])
 
     function handleChange({ target }) {
+        console.log('in handle change');
         let { value, name: field, type } = target
         value = type === 'number' ? +value : value
         setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
