@@ -9,20 +9,22 @@ import { ToyDetails } from './pages/ToyDetails'
 import { UserMsg } from './cmps/UserMsg'
 
 import { store } from './store/store'
+import { PriceChart } from './cmps/PriceChart'
 
 export function App() {
   return (
     <Provider store={store}>
       <Router>
-        <section className="app">
+        <section className="app main-layout">
           <AppHeader />
-          <main className='main-layout'>
+          <main>
             <Routes>
               <Route element={<HomePage />} path="/" />
               <Route element={<ToyIndex />} path="/toy" />
               <Route element={<ToyEdit />} path="/toy/edit" />
               <Route element={<ToyEdit />} path="/toy/edit/:toyId" />
               <Route element={<ToyDetails />} path="/toy/:toyId" />
+              <Route element={<PriceChart />} path="/dashboard" />
             </Routes>
             <UserMsg />
           </main>

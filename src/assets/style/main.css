@@ -1,0 +1,21 @@
+/* Setup */
+@import 'setup/vars.css';
+/* @import 'setup/typography.css'; */
+
+/* Base */
+@import 'base/base.css';
+@import 'base/helpers.css';
+@import 'base/layout.css';
+/* @import 'base/forms.css'; */
+
+/* Pages */
+@import 'pages/homepage.css';
+@import 'pages/toy-index.css';
+@import 'pages/toy-details.css';
+@import 'pages/toy-edit.css';
+
+/* Components */
+@import 'cmps/app-header.css';
+@import 'cmps/toy-list.css';
+@import 'cmps/toy-preview.css';
+@import 'cmps/toy-filter.css';

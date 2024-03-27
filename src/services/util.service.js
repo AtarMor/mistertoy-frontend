@@ -5,6 +5,7 @@ export const utilService = {
     loadFromStorage,
     saveToStorage,
     getRandomTimestamp,
+    getFormattedDate,
     debounce
 }
 
@@ -63,4 +64,18 @@ function getRandomTimestamp() {
     const randomTimestamp = Math.floor(Math.random() * (now - startOfYear + 1)) + startOfYear
 
     return randomTimestamp
+}
+
+function getFormattedDate(timestamp) {
+    let date = new Date(timestamp)
+
+    let day = date.getDate()
+    let month = date.getMonth() + 1
+    let year = date.getFullYear()
+
+    day = day < 10 ? '0' + day : day
+    month = month < 10 ? '0' + month : month
+    let formattedDate = `${day}/${month}/${year}`
+
+    return formattedDate
 }

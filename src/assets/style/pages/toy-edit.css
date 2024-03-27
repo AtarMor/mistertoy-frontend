@@ -1,0 +1,26 @@
+.toy-edit {
+    background-color: white;
+    border-radius: 10px;
+    margin: 25px;
+    padding: 1em;
+}
+
+.toy-edit form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toy-edit h2 {
+    margin-bottom: 15px;
+    font-weight: lighter;
+    font-size: 1.3rem;
+}
+
+.toy-edit .btn-container {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    font-size: 0.875rem;
+    margin-top: 15px;
+}

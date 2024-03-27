@@ -1,0 +1,54 @@
+.toy-details {
+    display: grid;
+    grid-template-columns: auto auto;
+    min-width: 400px;
+    justify-self: center;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 10px;
+    margin: 25px;
+    padding-inline: 1em;
+}
+
+.toy-details .toy-desc {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 1em;
+    /* margin-top: 60px; */
+}
+
+.toy-details .toy-desc>* {
+    font-weight: lighter;
+}
+
+.toy-details img {
+    padding-block: 10px;
+}
+
+.toy-details .toy-desc .toy-name {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.toy-details h2 {
+    font-size: 1rem;
+}
+
+.toy-details .in-stock {
+    color: var(--green1)
+}
+
+.toy-details h3 {
+    font-size: 0.875rem;
+    color: var(--gray2);
+    flex-grow: 1;
+}
+
+.toy-details .btn-container {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+    justify-content: space-between;
+}

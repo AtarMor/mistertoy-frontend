@@ -1,0 +1,29 @@
+.filter-sort {
+    background-color: var(--clr4);
+    color: var(--gray3);
+    padding: 1em;
+    margin-block: 10px;
+    border-radius: 10px;
+}
+
+.toy-filter form>* {
+    margin: 0.5em
+}
+
+.toy-sort {
+    display: flex;
+    gap: 5px;
+    align-items: baseline;
+    margin-top: 15px;
+}
+
+.toy-sort button {
+    border-radius: 5px;
+    background-color: white;
+    color: var(--gray2);
+    border: 1px solid var(--gray2);
+}
+
+.toy-sort button:hover {
+    background-color: var(--gray1);
+}

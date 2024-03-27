@@ -65,7 +65,7 @@ export function ToyEdit() {
                     onChange={handleChange}
                 />
 
-                <div>
+                <div className="btn-container">
                     <button>{toyToEdit._id ? 'Save' : 'Add'}</button>
                     <Link to="/toy">Cancel</Link>
                 </div>

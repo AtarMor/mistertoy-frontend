@@ -45,11 +45,13 @@ export function ToyIndex() {
     }
 
     return <main className="toy-index">
-        <ToyFilter onSetFilter={onSetFilter} filterBy={filterBy} />
 
-        <ToySort onSetSort={onSetSort} sortBy={sortBy} />
+        <section className="filter-sort">
+            <ToyFilter onSetFilter={onSetFilter} filterBy={filterBy} />
+            <ToySort onSetSort={onSetSort} sortBy={sortBy} />
+        </section>
 
-        <Link to="/toy/edit"><button>Add Toy</button></Link>
+        <Link to="/toy/edit"><button className="add-btn">Add Toy</button></Link>
 
         {isLoading && <div>Loading...</div>}
         {!isLoading && <ToyList
