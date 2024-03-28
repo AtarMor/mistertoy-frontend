@@ -15,9 +15,7 @@ export const toyService = {
 const labels = ["On wheels", "Box game", "Art", "Baby", "Doll", "Puzzle", "Outdoor", "Battery Powered"]
 
 function query(filterBy, sortBy) {
-    console.log('filterBy', filterBy);
-    console.log('sortBy', sortBy);
-    return httpService.get('toy', { params: { ...filterBy, ...sortBy } })
+    return httpService.get('toy', { params: { filterBy, sortBy } })
 }
 
 function getLabels() {
@@ -54,7 +52,7 @@ function getDefaultFilter() {
 }
 
 function getDefaultSort() {
-    return { type: 'created', dir: -1 }
+    return { created : -1 }
 }
 
 function calcAvgPricePerLabel(toys, labels) {

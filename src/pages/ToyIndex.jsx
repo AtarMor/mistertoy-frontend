@@ -27,7 +27,8 @@ export function ToyIndex() {
     }
 
     function onSetSort(type) {
-        setSortBy({ type, dir: -sortBy.dir })
+        if (!sortBy[type]) sortBy[type] = -1
+        setSortBy({ [type]: -sortBy[type] })
     }
 
     function onRemoveToy(toyId) {

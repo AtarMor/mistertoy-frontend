@@ -27,9 +27,10 @@ function query(filterBy = {}, sortBy = {}) {
             if (filterBy.inStock !== 'all') {
                 toys = toys.filter(toy => (filterBy.inStock === 'inStock' ? toy.inStock : !toy.inStock))
             }
-            if (sortBy.type === 'name') toys.sort((toy1, toy2) => (toy1.name.localeCompare(toy2.name)) * sortBy.dir)
-            if (sortBy.type === 'price') toys.sort((toy1, toy2) => (toy1.price - toy2.price) * sortBy.dir)
-            if (sortBy.type === 'created') toys.sort((toy1, toy2) => (toy1.created - toy2.created) * sortBy.dir)
+            
+            if (sortBy.name) toys.sort((toy1, toy2) => (toy1.name.localeCompare(toy2.name)) * sortBy.name)
+            if (sortBy.price) toys.sort((toy1, toy2) => (toy1.price - toy2.price) * sortBy.price)
+            if (sortBy.created) toys.sort((toy1, toy2) => (toy1.created - toy2.created) * sortBy.created)
 
             return toys
         })
