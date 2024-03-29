@@ -15,7 +15,7 @@ export const toyService = {
 const labels = ["On wheels", "Box game", "Art", "Baby", "Doll", "Puzzle", "Outdoor", "Battery Powered"]
 
 function query(filterBy, sortBy) {
-    return httpService.get('toy', { params: { filterBy, sortBy } })
+    return httpService.get('toy', { ...filterBy, ...sortBy })
 }
 
 function getLabels() {
