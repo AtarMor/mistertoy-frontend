@@ -14,6 +14,7 @@ export function ToyIndex() {
     const toys = useSelector(storeState => storeState.toyModule.toys)
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
     const sortBy = useSelector(storeState => storeState.toyModule.sortBy)
+    const user = useSelector(storeState => storeState.userModule.user)
 
     useEffect(() => {
         loadToys()
@@ -51,7 +52,8 @@ export function ToyIndex() {
             <ToySort onSetSort={onSetSort} sortBy={sortBy} />
         </section>
 
-        <Link to="/toy/edit"><button className="add-btn">Add Toy</button></Link>
+        {user && user.isAdmin && 
+        <Link to="/toy/edit"><button className="add-btn">Add Toy</button></Link>}
 
         {isLoading && <div>Loading...</div>}
         {!isLoading && <ToyList

@@ -1,4 +1,5 @@
 header {
+    row-gap: 20px;
     background-color: var(--clr2);
     padding-block: 0.8em;
     color: var(--gray3)

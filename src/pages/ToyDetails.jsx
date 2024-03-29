@@ -2,10 +2,12 @@ import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import { toyService } from "../services/toy.service.js"
 import { utilService } from "../services/util.service.js"
+import { useSelector } from "react-redux"
 
 export function ToyDetails() {
     const [toy, setToy] = useState(null)
     const { toyId } = useParams()
+    const user = useSelector(storeState => storeState.userModule.user)
 
     useEffect(() => {
         if (toyId) loadToy()
@@ -32,8 +34,10 @@ export function ToyDetails() {
                 </h2>
                 <h3 className="toy-created">Added on {utilService.getFormattedDate(toy.created)}</h3>
                 <div className="btn-container">
-                    <Link to={`/toy/edit/${toy._id}`}><button>Edit</button></Link>
+                    {user && user.isAdmin &&
+                        <Link to={`/toy/edit/${toy._id}`}><button>Edit</button></Link>}
                     <Link to={`/toy`}><button>Back</button></Link>
+
                 </div>
             </div>
             <img src={`https://robohash.org/${toy.name}`} alt="" />

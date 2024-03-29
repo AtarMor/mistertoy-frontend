@@ -1,0 +1,28 @@
+.login-signup {
+    /* background-color: white; */
+}
+
+.login-signup .login-form {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+}
+
+.login-signup .welcome-user {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.login-signup .welcome-user>* {
+    font-size: 1rem;
+    ;
+}
+
+.login-page .btns {
+    margin-top: 10px;
+}
+
+.login-page .btns span {
+    color: var(--clr25)
+}

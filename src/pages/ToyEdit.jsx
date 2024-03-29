@@ -31,15 +31,15 @@ export function ToyEdit() {
 
     function onSaveToy(ev) {
         ev.preventDefault()
-        if (!toyToEdit.price) toyToEdit.price = 1000
+        if (!toyToEdit.price) toyToEdit.price = 100
         saveToy(toyToEdit)
             .then(() => {
                 showSuccessMsg('Toy Saved!')
                 navigate('/toy')
             })
             .catch(err => {
-                console.log('Had issues in toy details', err)
-                showErrorMsg('Had issues in toy details')
+                console.log('Had issues saving toy', err)
+                showErrorMsg('Had issues saving toy')
             })
     }
 
