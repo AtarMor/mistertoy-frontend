@@ -1,15 +1,18 @@
 import { httpService } from './http.service'
+import { utilService } from './util.service'
 
 export const toyService = {
     query,
     getById,
     remove,
     save,
+    addMsg,
     getEmptyToy,
+    getEmptyMsg,
     getDefaultFilter,
     getDefaultSort,
     getLabels,
-    calcAvgPricePerLabel
+    calcAvgPricePerLabel,
 }
 
 const labels = ["On wheels", "Box game", "Art", "Baby", "Doll", "Puzzle", "Outdoor", "Battery Powered"]
@@ -38,6 +41,10 @@ function save(toy) {
     }
 }
 
+function addMsg(toyId, txt) {
+    return httpService.post(`toy/${toyId}/msg`, txt)
+}
+
 function getEmptyToy() {
     return {
         name: '',
@@ -47,12 +54,23 @@ function getEmptyToy() {
     }
 }
 
+function getEmptyMsg() {
+    return {
+        id: utilService.makeId(),
+        txt: '',
+        by: {
+            _id: '',
+            fullname: ''
+        }
+    }
+}
+
 function getDefaultFilter() {
     return { txt: '', maxPrice: '', inStock: 'all' }
 }
 
 function getDefaultSort() {
-    return { created : -1 }
+    return { created: -1 }
 }
 
 function calcAvgPricePerLabel(toys, labels) {
