@@ -4,14 +4,14 @@ import { useSelector } from "react-redux"
 
 import { toyService } from "../services/toy.service.js"
 import { utilService } from "../services/util.service.js"
-import { addMsg } from "../store/actions/toy.actions.js"
+import { addMsg, removeMsg } from "../store/actions/toy.actions.js"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 
 export function ToyDetails() {
     const [toy, setToy] = useState(null)
     const { toyId } = useParams()
     const user = useSelector(storeState => storeState.userModule.user)
-    const [msgTxt, setMsgTxt] = useState(null)
+    const [msgTxt, setMsgTxt] = useState('')
 
     useEffect(() => {
         if (toyId) loadToy()
@@ -32,11 +32,23 @@ export function ToyDetails() {
             .then(msg => {
                 setToy({ ...toy, msgs: [...toy.msgs, msg] })
                 showSuccessMsg('Message submitted.')
-                setMsgTxt(null)
+                setMsgTxt('')
             })
             .catch(err => {
                 console.log('Had issues saving toy', err)
                 showErrorMsg('Had issues submitting message.')
+            })
+    }
+
+    function onMsgRemove(msgId) {
+        removeMsg(toyId, msgId)
+            .then(msgId => {
+                setToy({ ...toy, msgs: toy.msgs.filter(msg => msg.id !== msgId) })
+                showSuccessMsg('Message deleted.')
+            })
+            .catch(err => {
+                console.log('Had issues saving toy', err)
+                showErrorMsg('Had issues deleting message.')
             })
     }
 
@@ -54,7 +66,7 @@ export function ToyDetails() {
                 <h2 className={toy.inStock ? 'in-stock' : 'unavailable'}>
                     {toy.inStock ? 'In stock' : 'Unavailable'}
                 </h2>
-                <h3 className="toy-created">Added on {utilService.getFormattedDate(toy.created)}</h3>
+                <h3 className="toy-created">Added on {utilService.getFormattedDate(utilService.extractTsFromToyId(toy._id))}</h3>
 
                 <div className="btn-container">
                     {user && user.isAdmin &&
@@ -63,11 +75,15 @@ export function ToyDetails() {
                 </div>
             </div>
             <img src={`https://robohash.org/${toy.name}`} alt="" />
+
             <div className="user-msgs">
                 <h1>User messages</h1>
                 <ul className="clean-list">
-                    {toy && toy.msgs && toy.msgs.map(msg => <li key={toy.id}>
-                        {msg.by.fullname}: {msg.txt}
+                    {toy && toy.msgs && toy.msgs.map(msg => <li key={msg.id}>
+                        <p><span>{msg.by.fullname}:</span> {msg.txt}</p>
+                        {user && user.isAdmin &&
+                            <button className="del-msg-btn" onClick={() => onMsgRemove(msg.id)}>
+                                x</button>}
                     </li>)}
                     <li><form className="add-msg-form" onSubmit={onMsgSubmit}>
                         <input

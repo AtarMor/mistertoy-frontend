@@ -1,5 +1,5 @@
 import { toyService } from "../../services/toy.service"
-import { ADD_TOY, ADD_TOY_MSG, EDIT_TOY, REMOVE_TOY, SET_FILTER_BY, SET_IS_LOADING, SET_SORT_BY, SET_TOYS } from "../reducers/toy.reducer"
+import { ADD_TOY, ADD_TOY_MSG, EDIT_TOY, REMOVE_TOY, REMOVE_TOY_MSG, SET_FILTER_BY, SET_IS_LOADING, SET_SORT_BY, SET_TOYS } from "../reducers/toy.reducer"
 import { store } from "../store"
 
 
@@ -47,9 +47,20 @@ export function saveToy(toy) {
 export function addMsg(toyId, txt) {
     return toyService.addMsg(toyId, { txt })
         .then(msg => {
-            console.log('action', msg);
             store.dispatch({ type: ADD_TOY_MSG, toyId, msg })
             return msg
+        })
+        .catch(err => {
+            console.log('toy action -> Cannot add message', err)
+            throw err
+        })
+}
+
+export function removeMsg(toyId, msgId) {
+    return toyService.removeMsg(toyId, msgId)
+        .then(msgId => {
+            store.dispatch({ type: REMOVE_TOY_MSG, toyId, msgId })
+            return msgId
         })
         .catch(err => {
             console.log('toy action -> Cannot add message', err)

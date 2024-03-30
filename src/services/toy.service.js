@@ -7,8 +7,9 @@ export const toyService = {
     remove,
     save,
     addMsg,
+    removeMsg,
     getEmptyToy,
-    getEmptyMsg,
+    // getEmptyMsg,
     getDefaultFilter,
     getDefaultSort,
     getLabels,
@@ -45,12 +46,17 @@ function addMsg(toyId, txt) {
     return httpService.post(`toy/${toyId}/msg`, txt)
 }
 
+function removeMsg(toyId, msgId) {
+    return httpService.delete(`toy/${toyId}/msg/${msgId}`)
+}
+
 function getEmptyToy() {
     return {
         name: '',
         price: '',
         labels: [],
-        inStock: true
+        inStock: true,
+        msgs: []
     }
 }
 
@@ -70,7 +76,7 @@ function getDefaultFilter() {
 }
 
 function getDefaultSort() {
-    return { created: -1 }
+    return { type: 'created', dir: -1 }
 }
 
 function calcAvgPricePerLabel(toys, labels) {

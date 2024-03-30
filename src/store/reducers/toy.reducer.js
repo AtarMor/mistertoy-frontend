@@ -6,6 +6,7 @@ export const REMOVE_TOY = 'REMOVE_TOY'
 export const ADD_TOY = 'ADD_TOY'
 export const EDIT_TOY = 'EDIT_TOY'
 export const ADD_TOY_MSG = 'ADD_TOY_MSG'
+export const REMOVE_TOY_MSG = 'REMOVE_TOY_MSG'
 
 //* Shopping cart
 export const TOGGLE_CART_IS_SHOWN = 'TOGGLE_CART_IS_SHOWN'
@@ -46,7 +47,14 @@ export function toyReducer(state = initialState, action = {}) {
         case ADD_TOY_MSG:
             return {
                 ...state, toys: state.toys.map(toy =>
-                    toy._id === action.toy._id ? { ...toy, msgs: [...toy.msgs, action.msg] } : toy)
+                    toy._id === action.toyId ? { ...toy, msgs: [...toy.msgs, action.msg] } : toy)
+            }
+        case REMOVE_TOY_MSG:
+            return {
+                ...state, toys: state.toys.map(toy =>
+                    toy._id === action.toyId ?
+                        toy.msgs.filter(msg =>
+                            msg.id !== action.msgId) : toy)
             }
 
         //* Shopping cart
