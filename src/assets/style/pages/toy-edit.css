@@ -17,6 +17,10 @@
     font-size: 1.3rem;
 }
 
+.toy-edit .label-select {
+    width: 100%;
+}
+
 .toy-edit .btn-container {
     display: flex;
     gap: 10px;

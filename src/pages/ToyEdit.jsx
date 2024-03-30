@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 import { toyService } from "../services/toy.service.js"
 import { saveToy } from "../store/actions/toy.actions.js"
+import { LabelSelection } from "../cmps/LabelSelection.jsx"
 
 export function ToyEdit() {
     const navigate = useNavigate()
@@ -24,13 +25,22 @@ export function ToyEdit() {
     }
 
     function handleChange({ target }) {
-        let { value, type, name: field } = target
+        let { value, type, name: field, checked } = target
         value = type === 'number' ? +value : value
         setToyToEdit(prevToy => ({ ...prevToy, [field]: value }))
+        if (type === 'checkbox') {
+            if (checked) {
+                setToyToEdit((prev) => ({ ...prev, inStock: true }))
+            } else {
+                setToyToEdit((prev) => ({ ...prev, inStock: false }))
+            }
+            return
+        }
     }
 
     function onSaveToy(ev) {
         ev.preventDefault()
+        console.log(toyToEdit);
         if (!toyToEdit.price) toyToEdit.price = 100
         saveToy(toyToEdit)
             .then(() => {
@@ -64,12 +74,27 @@ export function ToyEdit() {
                     value={toyToEdit.price}
                     onChange={handleChange}
                 />
+                <div className="label-select">
+                    <LabelSelection
+                        toyToEdit={toyToEdit}
+                        setToyToEdit={setToyToEdit} />
+                </div>
+                <div>
+                <label htmlFor="inStock">In stock?</label>
+                <input type="checkbox"
+                    name="inStock"
+                    id="inStock"
+                    onChange={handleChange}
+                    checked={toyToEdit.inStock}
+                />
+                </div>
 
                 <div className="btn-container">
                     <button>{toyToEdit._id ? 'Save' : 'Add'}</button>
                     <Link to="/toy">Cancel</Link>
                 </div>
             </form>
+
         </section>
     )
 }

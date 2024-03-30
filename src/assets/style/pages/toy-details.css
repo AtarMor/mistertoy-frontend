@@ -65,7 +65,9 @@
     padding: 1em;
 }
 
-.toy-details .user-msgs li  {
+.toy-details .user-msgs li {
+    display: flex;
+    justify-content: space-between;
     font-size: 0.875rem;
     line-height: 2em;
     padding: 0.2em 1em;
@@ -75,17 +77,37 @@
     background-color: var(--clr2);
 }
 
-.toy-details .user-msgs li:last-child{
+.toy-details .user-msgs span {
+    color: var(--gray3);
+}
+
+.toy-details .del-msg-btn {
+    background-color: transparent;
+    color: var(--gray2);
+}
+
+.toy-details .user-msgs li:last-child {
     display: flex;
     padding: 0;
 }
+
 .toy-details .add-msg-form {
     width: 100%;
     height: 100%;
     display: flex;
 }
-.toy-details .add-msg-form input{
+
+.toy-details .add-msg-form input {
     flex-grow: 1;
     line-height: 1.8em;
     padding-inline: 1em;
+    border-color: var(--gray2);
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    border-right: 0;
+}
+
+.toy-details .add-msg-form button {
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
 }

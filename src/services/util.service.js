@@ -6,7 +6,8 @@ export const utilService = {
     saveToStorage,
     getRandomTimestamp,
     getFormattedDate,
-    debounce
+    debounce,
+    extractTsFromToyId
 }
 
 function makeId(length = 6) {
@@ -78,4 +79,9 @@ function getFormattedDate(timestamp) {
     let formattedDate = `${day}/${month}/${year}`
 
     return formattedDate
+}
+
+function extractTsFromToyId(toyId) {
+    const timestamp = new Date(parseInt(toyId.substring(0, 8), 16) * 1000)
+    return timestamp
 }
