@@ -1,0 +1,21 @@
+// SETUP
+@import 'setup/vars';
+/* @import 'setup/typography.css'; */
+// @import 'setup/mixins';
+// @import 'setup/functions';
+
+// BASE
+@import 'base/base';
+@import 'base/layout';
+
+// PAGES
+@import 'pages/homepage';
+@import 'pages/toy-index';
+@import 'pages/toy-details';
+@import 'pages/toy-edit';
+
+// COMPONENTS
+@import 'cmps/app-header';
+@import 'cmps/toy-list';
+@import 'cmps/toy-preview';
+@import 'cmps/toy-filter';

@@ -69,7 +69,7 @@ export function ToyDetails() {
                 <h3 className="toy-created">Added on {utilService.getFormattedDate(utilService.extractTsFromToyId(toy._id))}</h3>
 
                 <div className="btn-container">
-                    {user && user.isAdmin &&
+                    {user?.isAdmin &&
                         <Link to={`/toy/edit/${toy._id}`}><button>Edit</button></Link>}
                     <Link to={`/toy`}><button>Back</button></Link>
                 </div>
@@ -79,9 +79,9 @@ export function ToyDetails() {
             <div className="user-msgs">
                 <h1>User messages</h1>
                 <ul className="clean-list">
-                    {toy && toy.msgs && toy.msgs.map(msg => <li key={msg.id}>
+                    {toy?.msgs?.map(msg => <li key={msg.id}>
                         <p><span>{msg.by.fullname}:</span> {msg.txt}</p>
-                        {user && user.isAdmin &&
+                        {user?.isAdmin &&
                             <button className="del-msg-btn" onClick={() => onMsgRemove(msg.id)}>
                                 x</button>}
                     </li>)}

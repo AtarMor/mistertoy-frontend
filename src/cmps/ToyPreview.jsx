@@ -10,7 +10,7 @@ export function ToyPreview({ toy, onRemoveToy }) {
             <p>Price: <span>${toy.price.toLocaleString()}</span></p>
             <img src={`https://robohash.org/${toy.name}`} alt="" />
         </Link>
-        {user && user.isAdmin &&
+        {user?.isAdmin &&
             <div className="btn-container">
                 <Link to={`/toy/${toy._id}`}><button>Details</button></Link>
                 <Link to={`/toy/edit/${toy._id}`}><button>Edit</button></Link>

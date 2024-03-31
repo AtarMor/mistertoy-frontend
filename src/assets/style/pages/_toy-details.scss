@@ -1,0 +1,115 @@
+.toy-details {
+    display: grid;
+    grid-template-columns: auto auto;
+    min-width: 400px;
+    justify-self: center;
+    align-items: center;
+    justify-content: center;
+    row-gap: 40px;
+    background-color: white;
+    border-radius: 10px;
+    margin: 25px;
+    padding: 2em;
+
+    .toy-desc {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        .toy-name {
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-size: 1rem;
+        }
+
+        .in-stock {
+            color: var(--green1)
+        }
+
+        .unavailable {
+            color: var(--red1)
+        }
+
+        h3 {
+            font-size: 0.875rem;
+            color: var(--gray2);
+            flex-grow: 1;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+    }
+
+    img {
+        padding-block: 10px;
+        align-self: self-start;
+    }
+
+    .user-msgs {
+        grid-column: 1/-1;
+        border: 1px solid var(--gray1);
+        border-radius: 10px;
+
+        h1 {
+            color: var(--gray2);
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 1em;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.875rem;
+            line-height: 2em;
+            padding: 0.2em 1em;
+
+            &:nth-child(odd) {
+                background-color: var(--clr2);
+            }
+
+            span {
+                color: var(--gray3);
+            }
+
+            .del-msg-btn {
+                background-color: transparent;
+                color: var(--gray2);
+            }
+
+            &:last-child {
+                display: flex;
+                padding: 0;
+
+                .add-msg-form {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+
+                    input {
+
+                        flex-grow: 1;
+                        line-height: 1.8em;
+                        padding-inline: 1em;
+                        border-color: var(--gray2);
+                        border-bottom-right-radius: 0px;
+                        border-top-right-radius: 0px;
+                        border-right: 0;
+                    }
+
+                    button {
+                        border-bottom-left-radius: 0px;
+                        border-top-left-radius: 0px;
+                    }
+                }
+            }
+        }
+    }
+
+}

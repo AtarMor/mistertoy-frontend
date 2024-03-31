@@ -52,7 +52,7 @@ export function ToyIndex() {
             <ToySort onSetSort={onSetSort} sortBy={sortBy} />
         </section>
 
-        {user && user.isAdmin && 
+        {user?.isAdmin && 
         <Link to="/toy/edit"><button className="add-btn">Add Toy</button></Link>}
 
         {isLoading && <div>Loading...</div>}
