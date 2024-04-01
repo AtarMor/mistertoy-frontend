@@ -72,7 +72,7 @@ function getEmptyMsg() {
 }
 
 function getDefaultFilter() {
-    return { txt: '', maxPrice: '', inStock: 'all' }
+    return { txt: '', maxPrice: '', inStock: 'all', labels: [] }
 }
 
 function getDefaultSort() {
