@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 
 import { toyService } from "../services/toy.service.js"
 import { utilService } from "../services/util.service.js"
 import { addMsg, removeMsg } from "../store/actions/toy.actions.js"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
+import { ToyReview } from "../cmps/ToyReview.jsx"
 
 export function ToyDetails() {
     const [toy, setToy] = useState(null)
     const { toyId } = useParams()
     const user = useSelector(storeState => storeState.userModule.user)
     const [msgTxt, setMsgTxt] = useState('')
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (toyId) loadToy()
@@ -96,6 +98,8 @@ export function ToyDetails() {
                     </form></li>
                 </ul>
             </div>
+            <ToyReview
+                toy={toy} />
         </section>
     )
 }

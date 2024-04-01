@@ -12,7 +12,6 @@ export function ToyFilter({ onSetFilter, filterBy }) {
 
     function handleChange({ target }) {
         let { value, name: field, type } = target
-        console.log(type, value);
         value = type === 'number' ? +value : value
         if (type === 'select-multiple') {
             setFilterByToEdit(prevFilter =>
@@ -25,7 +24,6 @@ export function ToyFilter({ onSetFilter, filterBy }) {
         }
         else setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
     }
-    console.log(filterByToEdit);
 
     const labels = toyService.getLabels()
     return (
